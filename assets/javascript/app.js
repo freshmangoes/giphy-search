@@ -1,12 +1,6 @@
 var searchTerm = "";
 var buttons = ["koalas", "lemons"];
 
-// function to get and display gifs 
-// *****************************************************
-// Need to work on formatting of how gifs are displayed,
-// kinda ugly right now.
-// *****************************************************
-
 var displayGifs = () => {
   var gv = $(".gif-view");
   var rating = "&rating=g";
@@ -19,8 +13,6 @@ var displayGifs = () => {
   var queryURL = giphyURL + searchTerm + rating + apikey + limit;
 
   console.log("queryURL:", queryURL);
-  // console.log("search term btn click:", searchTerm);
-  // console.log("THIS", $(this));
 
   $.ajax({
     url: queryURL,
@@ -28,14 +20,16 @@ var displayGifs = () => {
   }).then(function(response) {
     // console.log(JSON.stringify(response));
     console.log("response.data.length", response.data.length);
+    var results = response.data;
     // loop through response.data array    
-    for(var i=0; i < response.data.length; i++) {
-      // console.log("response.data.images:", response.data[i].images);
+    for(var i=0; i < results.length; i++) {
       // create a new image with the url from the data
-      var newImg = "<img src=" + response.data[i].images.fixed_height.url + ">";
-      // console.log("newImg:", newImg);
+      var currImg = results[i];
+      var newGif = $("<img>");
+      newGif.attr("src", currImg.images.fixed_height.url);
+
       // append the image to gif-view
-      gv.append(newImg);
+      gv.append(newGif);
     }
   });
 }
