@@ -1,13 +1,4 @@
-var giphyURL = "https://api.giphy.com/v1/gifs/search?q=";
-var rating = "&rating=g";
-var limit = "&limit=25";
 var searchTerm = "";
-
-var bv = $(".buttons-view");
-var gv = $(".gif-view");
-var nd = "<div>";
-var nb = "<button>"; 
-
 var buttons = ["koalas", "lemons"];
 
 // function to get and display gifs 
@@ -17,6 +8,11 @@ var buttons = ["koalas", "lemons"];
 // *****************************************************
 
 var displayGifs = () => {
+  var gv = $(".gif-view");
+  var rating = "&rating=g";
+  var limit = "&limit=25";
+  var giphyURL = "https://api.giphy.com/v1/gifs/search?q=";
+
   gv.empty();
   // var searchTerm = $(this).attr("data-name");
   var apikey = "&apikey=u471w3d33pSWKWF38nhvk6fzGIsBtLyJ";
@@ -45,13 +41,15 @@ var displayGifs = () => {
 }
 
 var renderButtons = () => {
-  $(".buttons-view").empty();
+  var bv = $(".buttons-view");
+
+  bv.empty();
   for(var i = 0; i < buttons.length; i++) {
-    var a = $("<button>");
-    a.addClass("search-elem");
-    a.attr("data-name", buttons[i]);
-    a.text(buttons[i]);
-    $(".buttons-view").append(a);
+    var newButton = $("<button>");
+    newButton.addClass("search-elem");
+    newButton.attr("data-name", buttons[i]);
+    newButton.text(buttons[i]);
+    bv.append(newButton);
   }
 }
 
