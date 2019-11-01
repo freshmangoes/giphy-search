@@ -41,8 +41,7 @@ var renderButtons = () => {
 
   for(var i = 0; i < buttons.length; i++) {
     var newButton = $("<button>");
-    newButton.addClass("btn-primary");
-    newButton.addClass("search-elem");
+    newButton.addClass("btn btn-outline-success search-elem mr-1");
     newButton.attr("data-name", buttons[i]);
     newButton.text(buttons[i]);
     bv.append(newButton);
