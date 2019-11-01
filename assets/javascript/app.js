@@ -44,8 +44,10 @@ var renderButtons = () => {
   var bv = $(".buttons-view");
 
   bv.empty();
+
   for(var i = 0; i < buttons.length; i++) {
     var newButton = $("<button>");
+    newButton.addClass("btn-primary");
     newButton.addClass("search-elem");
     newButton.attr("data-name", buttons[i]);
     newButton.text(buttons[i]);
@@ -59,7 +61,7 @@ $(document).on("click", ".search-elem", function() {
   displayGifs();
 });
 
-$(".add-animal").click(function(event){
+$(".add-search").click(function(event){
   event.preventDefault();
   var searchInput = $(".search-input").val().trim();
   console.log("search input", searchInput);
