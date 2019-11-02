@@ -26,8 +26,13 @@ var displayGifs = () => {
       // create a new image with the url from the data
       var currImg = results[i];
       var newGif = $("<img>");
-      newGif.attr("src", currImg.images.fixed_height.url);
-
+      newGif.addClass("gifs");
+      newGif.attr("animate-state", "still");
+      // currently gets still img, when clicked should animate gif
+      newGif.attr("src", currImg.images.fixed_height_small_still.url);
+      newGif.attr("data-state-still", currImg.images.fixed_height_small_still.url);
+      newGif.attr("data-state-animate", currImg.images.fixed_height_small.url);
+      newGif.attr("rating", currImg.rating);
       // append the image to gif-view
       gv.append(newGif);
     }
@@ -49,17 +54,49 @@ var renderButtons = () => {
 }
 
 
-$(document).on("click", ".search-elem", function() {
-  searchTerm = $(this).attr("data-name");
-  displayGifs();
+
+// $(".")
+$(document).ready(() => {
+  $(document).on("click", ".search-elem", function() {
+    searchTerm = $(this).attr("data-name");
+    displayGifs();
+  });
+
+  $(".add-search").click((event) => {
+    event.preventDefault();
+    var searchInput = $(".search-input").val().trim();
+    console.log("search input", searchInput);
+    buttons.push(searchInput);
+    renderButtons();
+  });
+  
+  // $(".gif").click(() => {
+  //   console.log("gif clicked");
+  //   var animate_state = $(this).attr("animate-state");
+  //   console.log($(this));
+  //   if(animate_state === "still") {
+  //     console.log("still");
+  //   } else if (animate_state === "animate") {
+  //     console.log("animated");
+  //   }
+  // });
+
 });
 
-$(".add-search").click(function(event){
-  event.preventDefault();
-  var searchInput = $(".search-input").val().trim();
-  console.log("search input", searchInput);
-  buttons.push(searchInput);
-  renderButtons();
+$(".gif-view").on("click", ".gifs", function() {
+  console.log("gif clicked");
+  var animate_state = $(this).attr("animate-state");
+  var currImg = $(this);
+  console.log($(this));
+  if(animate_state === "still") {
+    console.log("still");
+    currImg.attr("animate-state", "animate");
+    currImg.attr("src", currImg.attr("data-state-animate"));
+  } else if (animate_state === "animate") {
+    console.log("animated");
+    currImg.attr("animate-state", "still");
+    currImg.attr("src", currImg.attr("data-state-still"));
+  }
 });
 
 renderButtons();
