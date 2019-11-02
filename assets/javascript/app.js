@@ -69,18 +69,6 @@ $(document).ready(() => {
     buttons.push(searchInput);
     renderButtons();
   });
-  
-  // $(".gif").click(() => {
-  //   console.log("gif clicked");
-  //   var animate_state = $(this).attr("animate-state");
-  //   console.log($(this));
-  //   if(animate_state === "still") {
-  //     console.log("still");
-  //   } else if (animate_state === "animate") {
-  //     console.log("animated");
-  //   }
-  // });
-
 });
 
 $(".gif-view").on("click", ".gifs", function() {
