@@ -53,11 +53,8 @@ var renderButtons = () => {
   }
 }
 
-
-
-// $(".")
 $(document).ready(() => {
-  $(document).on("click", ".search-elem", function() {
+  $(document).on("click", ".search-elem", () => {
     searchTerm = $(this).attr("data-name");
     displayGifs();
   });
@@ -70,33 +67,22 @@ $(document).ready(() => {
     renderButtons();
   });
   
-  // $(".gif").click(() => {
-  //   console.log("gif clicked");
-  //   var animate_state = $(this).attr("animate-state");
-  //   console.log($(this));
-  //   if(animate_state === "still") {
-  //     console.log("still");
-  //   } else if (animate_state === "animate") {
-  //     console.log("animated");
-  //   }
-  // });
-
+  $(".gif-view").on("click", ".gifs", () => {
+    console.log("gif clicked");
+    var animate_state = $(this).attr("animate-state");
+    var currImg = $(this);
+    console.log($(this));
+    if(animate_state === "still") {
+      console.log("still");
+      currImg.attr("animate-state", "animate");
+      currImg.attr("src", currImg.attr("data-state-animate"));
+    } else if (animate_state === "animate") {
+      console.log("animated");
+      currImg.attr("animate-state", "still");
+      currImg.attr("src", currImg.attr("data-state-still"));
+    }
+  });
+  renderButtons();
 });
 
-$(".gif-view").on("click", ".gifs", function() {
-  console.log("gif clicked");
-  var animate_state = $(this).attr("animate-state");
-  var currImg = $(this);
-  console.log($(this));
-  if(animate_state === "still") {
-    console.log("still");
-    currImg.attr("animate-state", "animate");
-    currImg.attr("src", currImg.attr("data-state-animate"));
-  } else if (animate_state === "animate") {
-    console.log("animated");
-    currImg.attr("animate-state", "still");
-    currImg.attr("src", currImg.attr("data-state-still"));
-  }
-});
 
-renderButtons();
