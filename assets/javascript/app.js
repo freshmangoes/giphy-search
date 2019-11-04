@@ -73,16 +73,22 @@ $(document).ready(() => {
 
 $(".gif-view").on("click", ".gifs", function() {
   console.log("gif clicked");
-  var animate_state = $(this).attr("animate-state");
+  var animateState = $(this).attr("animate-state");
   var currImg = $(this);
   console.log($(this));
-  if(animate_state === "still") {
+  // if the image is still
+  if(animateState === "still") {
     console.log("still");
+    // change the attr to animate
     currImg.attr("animate-state", "animate");
+    // change the src to the animated gif
     currImg.attr("src", currImg.attr("data-state-animate"));
-  } else if (animate_state === "animate") {
+  // if the image is animated
+  } else if (animateState === "animate") {
     console.log("animated");
+    // change attr to still
     currImg.attr("animate-state", "still");
+    // change src to still src
     currImg.attr("src", currImg.attr("data-state-still"));
   }
 });
