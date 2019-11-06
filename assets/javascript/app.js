@@ -3,7 +3,7 @@ var buttons = ["koalas", "lemons"];
 
 var displayGifs = () => {
   var gv = $(".gif-view");
-  var rating = "&rating=g";
+  var rating = "&rating=pg13";
   var limit = "&limit=25";
   var giphyURL = "https://api.giphy.com/v1/gifs/search?q=";
 
@@ -26,22 +26,42 @@ var displayGifs = () => {
       // create a new image with the url from the data
       var currImg = results[i];
       var newGif = $("<img>");
+      // div to store image & caption
+      var nDiv = $("<div>");
+      // div to store caption
+      var nDiv2 = $("<div>");
+      // adds a class just for identification purposes
+      nDiv.addClass("gif-container");
+      // adds gif class to gif
       newGif.addClass("gifs");
+      // adds attr still, because still img loads initially
       newGif.attr("animate-state", "still");
-      // currently gets still img, when clicked should animate gif
+      // adding src for still img
       newGif.attr("src", currImg.images.fixed_height_small_still.url);
+      // adds data state attr to store url for still img
       newGif.attr("data-state-still", currImg.images.fixed_height_small_still.url);
+      // adds attr to sture url for animated img
       newGif.attr("data-state-animate", currImg.images.fixed_height_small.url);
+      // adds attr for rating
       newGif.attr("rating", currImg.rating);
-      // append the image to gif-view
-      gv.append(newGif);
+      
+      
+      // append the gif to the first new div
+      nDiv.append(newGif);
+      // appends the rating caption to the first new div
+      nDiv.append(nDiv2);
+      // adds the div containing both to gif-view
+      gv.append(nDiv);
+      // adds the rating text to the div
+      nDiv2.text("Rating: " + newGif.attr("rating"));
+      // centers rating caption
+      nDiv2.addClass("text-center");
     }
   });
 }
 
 var renderButtons = () => {
   var bv = $(".buttons-view");
-
   bv.empty();
 
   for(var i = 0; i < buttons.length; i++) {
@@ -53,9 +73,6 @@ var renderButtons = () => {
   }
 }
 
-
-
-// $(".")
 $(document).ready(() => {
   $(document).on("click", ".search-elem", function() {
     searchTerm = $(this).attr("data-name");
