@@ -9,7 +9,7 @@ var displayGifs = () => {
 
   gv.empty();
   // var searchTerm = $(this).attr("data-name");
-  var apikey = "&apikey=u471w3d33pSWKWF38nhvk6fzGIsBtLyJ";
+  var apikey = "&api_key=u471w3d33pSWKWF38nhvk6fzGIsBtLyJ";
   var queryURL = giphyURL + searchTerm + rating + apikey + limit;
 
   console.log("queryURL:", queryURL);

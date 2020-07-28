@@ -11,3 +11,6 @@ Written in vanilla HTML/CSS/Bootstrap, Javascript/jQuery, and uses the Giphy API
 
 # Instructions
 Clone the repo and open index.html in your web browser!
+
+# Demo
+![Example Gif](./giphy-search.gif)
